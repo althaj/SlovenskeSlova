@@ -1,8 +1,24 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model string[]
+
+@{
+    ViewData["Title"] = "Slovenské Slová";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+<form action="/" method="get">
+    <div class="row col-sm-6 p-4 mx-auto">
+        <div class="col-sm-5 p-4 m-1 border border-primary-subtle rounded-start">
+            <label for="count">Počet slov:</label>
+            <input type="number" id="count" class="w-100" name="count" value="@ViewData["count"]">
+            <input type="submit" value="Načítať" />
+        </div>
+
+        <div class="text-center col-sm-5 p-4 m-1 border border-primary-subtle rounded-end">
+            <h2>Slová:</h2>
+            @foreach (var word in Model)
+            {
+                <div>@word</div>
+            }
+        </div>
+    </div>
+</form>

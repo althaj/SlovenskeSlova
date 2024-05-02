@@ -1,3 +1,5 @@
+using SlovenskeSlova.DataLayer;
+
 namespace SlovenskeSlova
 {
     public class Program
@@ -8,6 +10,7 @@ namespace SlovenskeSlova
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.Add(new ServiceDescriptor(typeof(IDictionaryManager), new DictionaryManagerSK()));
 
             var app = builder.Build();
 

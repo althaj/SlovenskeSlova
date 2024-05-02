@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SlovenskeSlova.DataLayer;
 using SlovenskeSlova.Models;
 using System.Diagnostics;
 
@@ -13,14 +14,10 @@ namespace SlovenskeSlova.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index([FromServices] IDictionaryManager slovnik, int count = 5)
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            ViewData["count"] = count;
+            return View(slovnik.GetWords(count));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
